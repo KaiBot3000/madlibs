@@ -44,10 +44,23 @@ def show_game_form():
 def show_madlib():
     person_input = request.args.get("person")
     color_input = request.args.get("color")
-    noun_input = request.args.get("noun")
+    city_input = request.args.get("city")
     adjective_input = request.args.get("adjective")
 
-    return render_template("madlib.html", person=person_input, color=color_input, noun=noun_input, adjective=adjective_input)
+    animals_list = []
+
+    if request.args.get("elephant"):
+        animals_list.append('an elephant')
+    if request.args.get("penguin"):
+        animals_list.append('a penguin')
+    if request.args.get("jellyfish"):
+        animals_list.append('a jellyfish')
+    if request.args.get("octopus"):
+        animals_list.append('an octopus')
+
+    animals_text = ", ".join(animals_list)
+
+    return render_template("madlib.html", person=person_input, color=color_input, city=city_input, adjective=adjective_input, animals=animals_text)
 
 
 if __name__ == '__main__':
